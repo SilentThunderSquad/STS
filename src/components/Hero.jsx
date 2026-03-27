@@ -60,7 +60,8 @@ export default function Hero({ onStrike, soundEnabled, toggleSound }) {
       });
 
       tl.to(chars, { yPercent: 0, opacity: 1, stagger: 0.012, duration: 0.25 }, 0.05)
-        .to(contentRef.current, { yPercent: -8, duration: 0.45 }, 0.15)
+        // Keep hero content bounded in viewport; parallax the bolt instead of shifting whole layout.
+        .to(thunderRef.current, { yPercent: -6, duration: 0.45 }, 0.15)
         .to(thunderRef.current, { scale: 1.05, duration: 0.28 }, 0.2)
         .to(glowRef.current, { opacity: 0.5, filter: "drop-shadow(0 0 20px rgba(128,226,255,0.55))" }, 0.2)
         .to(thunderRef.current, { scale: 1.55, rotation: -4, duration: 0.2 }, 0.44)
@@ -70,8 +71,9 @@ export default function Hero({ onStrike, soundEnabled, toggleSound }) {
         .to(contentRef.current, { x: 10, y: 4, duration: 0.04 }, 0.48)
         .to(contentRef.current, { x: 0, y: 0, duration: 0.06 }, 0.52)
         .to(thunderRef.current, { scale: 1.8, rotation: 0, duration: 0.35 }, 0.62)
+        .to(thunderRef.current, { yPercent: 0, duration: 0.28 }, 0.72)
         .to(glowRef.current, { opacity: 0.16, duration: 0.28 }, 0.72)
-        .to(chars, { opacity: 0.2, yPercent: -8, stagger: 0.005, duration: 0.25 }, 0.8);
+        .to(chars, { opacity: 0.2, stagger: 0.005, duration: 0.25 }, 0.8);
 
       return () => {
         splitInstances.forEach((split) => split.revert());
