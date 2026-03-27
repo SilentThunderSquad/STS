@@ -97,9 +97,12 @@ export default function Hero({ onStrike, soundEnabled, toggleSound }) {
         <div className="absolute bottom-[-15%] right-[-10%] h-96 w-96 rounded-full bg-blue-500/20 blur-3xl" />
       </div>
 
-      <div ref={contentRef} className="relative z-20 flex min-h-screen flex-col justify-between px-6 py-8 md:px-14 md:py-12">
-        <div className="flex items-start justify-between">
-          <h1 data-split className="font-display text-4xl font-semibold uppercase tracking-[0.2em] text-white/95 md:text-6xl">
+      <div ref={contentRef} className="relative z-20 flex min-h-screen flex-col justify-between px-6 py-10 md:px-14 md:py-16">
+        <div className="flex items-start justify-between pt-2 md:pt-4">
+          <h1
+            data-split
+            className="font-display text-[clamp(2.25rem,5.8vw,4.9rem)] font-semibold uppercase tracking-[0.16em] text-white/95"
+          >
             Silent
           </h1>
           <Button variant="outline" size="sm" onClick={toggleSound}>
@@ -107,7 +110,7 @@ export default function Hero({ onStrike, soundEnabled, toggleSound }) {
           </Button>
         </div>
 
-        <div className="relative mt-12 md:mt-4">
+        <div className="relative mt-8 md:mt-2">
           <h2
             data-split
             className="font-display text-[19vw] font-black uppercase leading-none tracking-tight text-white md:text-[14vw]"
@@ -137,11 +140,14 @@ export default function Hero({ onStrike, soundEnabled, toggleSound }) {
           </svg>
         </div>
 
-        <div className="flex items-end justify-between">
+        <div className="flex items-end justify-between pb-2 md:pb-4">
           <p className="max-w-md text-sm text-white/65 md:text-base">
             Cinematic engineering collective crafting bold digital systems that solve real-world challenges.
           </p>
-          <h3 data-split className="font-display text-5xl font-extrabold uppercase tracking-[0.16em] md:text-8xl">
+          <h3
+            data-split
+            className="font-display text-[clamp(3rem,8.4vw,7.5rem)] font-extrabold uppercase tracking-[0.12em] text-white/95"
+          >
             Squad
           </h3>
         </div>
