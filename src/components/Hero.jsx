@@ -1,28 +1,16 @@
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
-import { Button } from "@/components/ui/button";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Hero({ onStrike, soundEnabled, toggleSound }) {
+export default function Hero() {
   const sectionRef = useRef(null);
   const contentRef = useRef(null);
   const thunderRef = useRef(null);
   const glowRef = useRef(null);
   const flashRef = useRef(null);
-  const firedRef = useRef(false);
-  const onStrikeRef = useRef(onStrike);
-  const soundEnabledRef = useRef(soundEnabled);
-
-  useEffect(() => {
-    onStrikeRef.current = onStrike;
-  }, [onStrike]);
-
-  useEffect(() => {
-    soundEnabledRef.current = soundEnabled;
-  }, [soundEnabled]);
 
   useLayoutEffect(() => {
     if (!sectionRef.current) return;
@@ -46,16 +34,7 @@ export default function Hero({ onStrike, soundEnabled, toggleSound }) {
           start: "top top",
           end: "+=260%",
           pin: true,
-          scrub: true,
-          onUpdate: (self) => {
-            if (self.progress > 0.42 && self.progress < 0.5 && !firedRef.current) {
-              firedRef.current = true;
-              if (soundEnabledRef.current) onStrikeRef.current?.();
-            }
-            if (self.progress < 0.2) {
-              firedRef.current = false;
-            }
-          }
+          scrub: true
         }
       });
 
@@ -105,9 +84,7 @@ export default function Hero({ onStrike, soundEnabled, toggleSound }) {
           >
             Silent
           </h1>
-          <Button variant="outline" size="sm" onClick={toggleSound}>
-            Sound: {soundEnabled ? "On" : "Off"}
-          </Button>
+          <div className="h-9 w-20" aria-hidden />
         </div>
 
         <div className="relative mt-8 md:mt-2">
