@@ -126,6 +126,15 @@ export default function App() {
 
   useEffect(() => {
     // Lenis is the only scroll engine; GSAP uses Lenis RAF for all ScrollTrigger updates.
+    const debugScroll =
+      import.meta.env.DEV &&
+      typeof window !== "undefined" &&
+      new URLSearchParams(window.location.search).get("debugScroll") === "1";
+
+    if (debugScroll) {
+      ScrollTrigger.defaults({ markers: true });
+    }
+
     const lenis = new Lenis({
       duration: 1.15,
       smoothWheel: true,
@@ -141,12 +150,46 @@ export default function App() {
 
     gsap.ticker.add(update);
     gsap.ticker.lagSmoothing(0);
+    const refresh = () => ScrollTrigger.refresh();
+    const debugLog = () => {
+      if (!debugScroll) return;
+      const summary = ScrollTrigger.getAll().map((st, index) => ({
+        idx: index,
+        id: st.vars?.id ?? "n/a",
+        start: Math.round(st.start),
+        end: Math.round(st.end),
+        trigger: st.trigger?.className ?? st.trigger?.tagName ?? "unknown"
+      }));
+      // eslint-disable-next-line no-console
+      console.table(summary);
+    };
 
-    const refreshTimeout = setTimeout(() => ScrollTrigger.refresh(), 200);
+    const refreshTimeout = setTimeout(refresh, 200);
+    const loadTimeout = setTimeout(refresh, 900);
+
+    window.addEventListener("load", refresh);
+    window.addEventListener("resize", refresh);
+    document.fonts?.ready?.then(refresh).catch(() => {});
+
+    const images = Array.from(document.querySelectorAll("img"));
+    const pending = images.filter((img) => !img.complete);
+    pending.forEach((img) => img.addEventListener("load", refresh, { once: true }));
+    pending.forEach((img) => img.addEventListener("error", refresh, { once: true }));
+    ScrollTrigger.addEventListener("refresh", debugLog);
 
     return () => {
       clearTimeout(refreshTimeout);
+      clearTimeout(loadTimeout);
+      window.removeEventListener("load", refresh);
+      window.removeEventListener("resize", refresh);
+      pending.forEach((img) => img.removeEventListener("load", refresh));
+      pending.forEach((img) => img.removeEventListener("error", refresh));
+      ScrollTrigger.removeEventListener("refresh", debugLog);
+      if (debugScroll) {
+        ScrollTrigger.defaults({ markers: false });
+      }
       gsap.ticker.remove(update);
+      lenis.off("scroll", ScrollTrigger.update);
       lenis.destroy();
     };
   }, []);

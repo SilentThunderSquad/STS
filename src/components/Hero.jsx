@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
@@ -13,6 +13,16 @@ export default function Hero({ onStrike, soundEnabled, toggleSound }) {
   const glowRef = useRef(null);
   const flashRef = useRef(null);
   const firedRef = useRef(false);
+  const onStrikeRef = useRef(onStrike);
+  const soundEnabledRef = useRef(soundEnabled);
+
+  useEffect(() => {
+    onStrikeRef.current = onStrike;
+  }, [onStrike]);
+
+  useEffect(() => {
+    soundEnabledRef.current = soundEnabled;
+  }, [soundEnabled]);
 
   useLayoutEffect(() => {
     if (!sectionRef.current) return;
@@ -38,14 +48,14 @@ export default function Hero({ onStrike, soundEnabled, toggleSound }) {
           pin: true,
           scrub: true,
           onUpdate: (self) => {
-          if (self.progress > 0.42 && self.progress < 0.5 && !firedRef.current) {
-            firedRef.current = true;
-            if (soundEnabled) onStrike?.();
+            if (self.progress > 0.42 && self.progress < 0.5 && !firedRef.current) {
+              firedRef.current = true;
+              if (soundEnabledRef.current) onStrikeRef.current?.();
+            }
+            if (self.progress < 0.2) {
+              firedRef.current = false;
+            }
           }
-          if (self.progress < 0.2) {
-            firedRef.current = false;
-          }
-        }
         }
       });
 
@@ -69,7 +79,7 @@ export default function Hero({ onStrike, soundEnabled, toggleSound }) {
     }, sectionRef.current);
 
     return () => ctx.revert();
-  }, [onStrike, soundEnabled]);
+  }, []);
 
   return (
     <section
