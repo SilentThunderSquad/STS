@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 const CONFIG = {
-  particleCount: 90,
+  particleCount: 200,
   maxSpeed: 0.25,
   particleRadius: 1.8,
   connectionDistance: 140,
