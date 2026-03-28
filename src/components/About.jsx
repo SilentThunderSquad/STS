@@ -74,7 +74,7 @@ export default function About() {
     <section
       ref={sectionRef}
       id="about"
-      className="relative border-t border-white/5 px-6 py-28 md:px-20 md:py-40"
+      className="relative section-transition border-t border-white/5 px-6 py-28 md:px-20 md:py-40"
     >
       <div className="mx-auto grid max-w-7xl gap-20 md:grid-cols-2 md:gap-16">
         {/* Left column */}
@@ -129,10 +129,10 @@ export default function About() {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            {["AI Systems", "Full Stack", "Cloud & DevOps", "Product Design"].map((tag) => (
+            {["AI Systems", "Full Stack", "Cloud & DevOps", "Product Design"].map((tag, i) => (
               <div
                 key={tag}
-                className="rounded-xl border border-white/5 bg-white/[0.02] p-5"
+                className={`reveal reveal-scale reveal-delay-${i + 3} rounded-xl border border-white/5 bg-white/[0.02] p-5`}
               >
                 <p className="text-sm font-medium text-white/60">{tag}</p>
               </div>

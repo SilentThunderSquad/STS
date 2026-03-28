@@ -93,7 +93,7 @@ export default function Team() {
     <section
       ref={sectionRef}
       id="team"
-      className="relative py-32 md:py-44 px-6 overflow-hidden"
+      className="relative section-transition py-32 md:py-44 px-6 overflow-hidden"
     >
       {/* Ambient glow behind section */}
       <div
@@ -113,7 +113,7 @@ export default function Team() {
         <h2 className="font-display text-4xl font-bold text-white md:text-6xl tracking-tight">
           Meet the Team
         </h2>
-        <p className="mt-4 text-sm text-white/25 max-w-md mx-auto">
+        <p className="reveal reveal-blur reveal-delay-3 mt-4 text-sm text-white/25 max-w-md mx-auto">
           Six engineers building production-grade systems — click any member to learn more.
         </p>
       </div>

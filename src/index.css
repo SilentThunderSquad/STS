@@ -145,3 +145,116 @@ img { max-width: 100%; display: block; }
 .hero-btn-ghost:active {
   transform: translateY(0px) scale(0.98);
 }
+
+/* ═══════════════════════════════════════════════
+   SCROLL REVEAL SYSTEM
+   Elements start hidden and animate into view
+   via Intersection Observer + GSAP
+   ═══════════════════════════════════════════════ */
+
+/* Base hidden state — all reveals share this */
+.reveal {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition-property: opacity, transform, filter;
+  transition-duration: 0.9s;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* When IntersectionObserver adds .is-visible */
+.reveal.is-visible {
+  opacity: 1;
+  transform: none !important;
+  filter: blur(0) !important;
+}
+
+/* ── Directional variants (compose with .reveal) ── */
+.reveal-up        { transform: translateY(60px); }
+.reveal-down      { transform: translateY(-40px); }
+.reveal-left      { transform: translateX(60px); }
+.reveal-right     { transform: translateX(-60px); }
+.reveal-scale     { transform: scale(0.92); }
+.reveal-scale-up  { transform: scale(0.88) translateY(40px); }
+.reveal-rotate    { transform: perspective(800px) rotateX(8deg) translateY(30px); }
+
+/* ── Blur-in variant ── */
+.reveal-blur {
+  filter: blur(12px);
+  transform: translateY(24px);
+}
+
+/* ── Speed modifiers ── */
+.reveal-fast  { transition-duration: 0.55s; }
+.reveal-slow  { transition-duration: 1.3s; }
+.reveal-xslow { transition-duration: 1.8s; }
+
+/* ── Stagger delays (apply to children) ── */
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+.reveal-delay-5 { transition-delay: 0.40s; }
+.reveal-delay-6 { transition-delay: 0.48s; }
+.reveal-delay-7 { transition-delay: 0.56s; }
+.reveal-delay-8 { transition-delay: 0.64s; }
+
+/* ── Section transition gradient overlay ── */
+.section-transition {
+  position: relative;
+}
+
+.section-transition::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--color-bg));
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ── Parallax depth layers (used inline with GSAP) ── */
+.parallax-slow  { will-change: transform; }
+.parallax-fast  { will-change: transform; }
+
+/* ── Smooth border-reveal line ── */
+.line-reveal {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.8s cubic-bezier(0.77, 0, 0.18, 1);
+}
+.line-reveal.is-visible {
+  transform: scaleX(1);
+}
+
+/* ── Floating particle-like accent dots ── */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+.float-gentle {
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+/* ── Number counter shimmer (for stats) ── */
+@keyframes shimmer-slide {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.7) 0%,
+    rgba(91,156,246,0.9) 40%,
+    rgba(255,255,255,0.7) 80%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-slide 3s ease-in-out infinite;
+}

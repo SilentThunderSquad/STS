@@ -107,7 +107,7 @@ export default function Projects() {
     <section
       ref={sectionRef}
       id="projects"
-      className="relative border-t border-white/5"
+      className="relative section-transition border-t border-white/5"
     >
       {/* ── Desktop pinned horizontal ── */}
       <div
@@ -127,7 +127,7 @@ export default function Projects() {
               Project Showcase
             </h2>
           </div>
-          <p className="max-w-xs text-right text-sm text-white/35 leading-relaxed">
+          <p className="reveal reveal-left reveal-delay-3 max-w-xs text-right text-sm text-white/35 leading-relaxed">
             Drag to explore — each project engineered for real-world impact.
           </p>
         </div>

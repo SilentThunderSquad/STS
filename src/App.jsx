@@ -8,10 +8,14 @@ import WhatWeDo from "@/components/WhatWeDo";
 import Projects from "@/components/Projects";
 import Team from "@/components/Team";
 import ScrollPlane from "@/components/ScrollPlane";
+import useScrollReveal from "@/lib/useScrollReveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
+  /* ─── Scroll Reveal (IntersectionObserver powered) ─── */
+  useScrollReveal({ threshold: 0.12, rootMargin: "0px 0px -80px 0px" });
+
   useEffect(() => {
     const debugScroll =
       import.meta.env.DEV &&
@@ -22,11 +26,14 @@ export default function App() {
       ScrollTrigger.defaults({ markers: true });
     }
 
+    /* ─── Lenis: buttery smooth scrolling ─── */
     const lenis = new Lenis({
-      duration: 1.15,
+      duration: 1.4,
       smoothWheel: true,
+      wheelMultiplier: 0.85,
       syncTouch: true,
-      touchMultiplier: 1.1
+      touchMultiplier: 1.1,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
 
     lenis.on("scroll", ScrollTrigger.update);
@@ -38,6 +45,36 @@ export default function App() {
     gsap.ticker.add(update);
     gsap.ticker.lagSmoothing(0);
 
+    /* ─── Parallax: subtle depth on sections ─── */
+    const parallaxElements = document.querySelectorAll(".parallax-slow");
+    parallaxElements.forEach((el) => {
+      gsap.to(el, {
+        y: -50,
+        ease: "none",
+        scrollTrigger: {
+          trigger: el,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.5,
+        },
+      });
+    });
+
+    const parallaxFast = document.querySelectorAll(".parallax-fast");
+    parallaxFast.forEach((el) => {
+      gsap.to(el, {
+        y: -100,
+        ease: "none",
+        scrollTrigger: {
+          trigger: el,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
+    });
+
+    /* ─── Refresh logic ─── */
     const refresh = () => ScrollTrigger.refresh();
     const debugLog = () => {
       if (!debugScroll) return;
@@ -46,7 +83,7 @@ export default function App() {
         id: st.vars?.id ?? "n/a",
         start: Math.round(st.start),
         end: Math.round(st.end),
-        trigger: st.trigger?.className ?? st.trigger?.tagName ?? "unknown"
+        trigger: st.trigger?.className ?? st.trigger?.tagName ?? "unknown",
       }));
       // eslint-disable-next-line no-console
       console.table(summary);
@@ -91,23 +128,25 @@ export default function App() {
       <WhatWeDo />
       <Projects />
       <Team />
-      <footer className="border-t border-white/5 px-6 py-12 md:px-20">
+
+      {/* Footer with scroll reveal */}
+      <footer className="relative border-t border-white/5 px-6 py-12 md:px-20">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 flex-wrap">
-          <p className="font-display text-sm font-semibold tracking-wide text-white/60">
+          <p className="reveal reveal-up reveal-delay-1 font-display text-sm font-semibold tracking-wide text-white/60">
             Silent Thunder Squad
           </p>
           <nav className="flex gap-6 text-xs text-white/30">
-            {["About", "Work", "Services", "Team"].map((link) => (
+            {["About", "Work", "Services", "Team"].map((link, i) => (
               <a
                 key={link}
                 href={`#${link.toLowerCase()}`}
-                className="hover:text-white/60 transition-colors duration-200"
+                className={`reveal reveal-up reveal-delay-${i + 2} hover:text-white/60 transition-colors duration-200`}
               >
                 {link}
               </a>
             ))}
           </nav>
-          <p className="text-xs text-white/20">© 2026 — All rights reserved</p>
+          <p className="reveal reveal-up reveal-delay-6 text-xs text-white/20">© 2026 — All rights reserved</p>
         </div>
       </footer>
     </main>

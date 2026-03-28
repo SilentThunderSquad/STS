@@ -79,7 +79,7 @@ export default function WhatWeDo() {
     <section
       ref={sectionRef}
       id="services"
-      className="border-t border-white/5 px-6 py-28 md:px-20 md:py-40"
+      className="section-transition border-t border-white/5 px-6 py-28 md:px-20 md:py-40"
     >
       <div className="mx-auto max-w-7xl">
         {/* Header */}
@@ -95,7 +95,7 @@ export default function WhatWeDo() {
               What We Do
             </h2>
           </div>
-          <p className="text-white/40 text-base leading-relaxed max-w-sm md:ml-auto">
+          <p className="reveal reveal-left reveal-delay-3 text-white/40 text-base leading-relaxed max-w-sm md:ml-auto">
             Three core disciplines that define how<br className="hidden md:block" />
             we approach every project.
           </p>
