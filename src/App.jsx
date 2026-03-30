@@ -7,7 +7,6 @@ import About from "@/components/About";
 import WhatWeDo from "@/components/WhatWeDo";
 import Projects from "@/components/Projects";
 import Team from "@/components/Team";
-import ScrollPlane from "@/components/ScrollPlane";
 import useScrollReveal from "@/lib/useScrollReveal";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -121,8 +120,6 @@ export default function App() {
 
   return (
     <>
-      <ScrollPlane />
-
       {/* ── GLOBAL PAGE BACKGROUND ── */}
       <div className="page-bg" aria-hidden>
         {/* Base deep field */}
