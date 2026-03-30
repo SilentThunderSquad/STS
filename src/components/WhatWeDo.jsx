@@ -119,7 +119,7 @@ export default function WhatWeDo() {
                 />
               </h3>
 
-              <p className="text-white/45 leading-relaxed text-base">
+              <p className="text-[15.5px] leading-[1.8] tracking-wide text-white/60 font-light hover:text-white/75 transition-all duration-500 [text-shadow:0_1px_2px_rgba(0,0,0,0.3)]">
                 {s.description}
               </p>
             </div>

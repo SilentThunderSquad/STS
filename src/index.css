@@ -299,7 +299,7 @@ img { max-width: 100%; display: block; }
 
 /* ── LEFT: Info panel ── */
 .team-pin-info {
-  flex: 0 0 440px;
+  flex: 0 0 480px;
   min-width: 0;
 }
 
@@ -308,7 +308,7 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: baseline;
   gap: 0.3rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .team-counter-num {
@@ -336,14 +336,14 @@ img { max-width: 100%; display: block; }
   font-weight: 500;
 }
 
-/* ── Info card (glassmorphic) ── */
+/* ── Info card (transparent – no background) ── */
 .team-info-card {
   border-radius: 1.25rem;
-  border: 1px solid rgba(255,255,255,0.06);
-  background: rgba(255,255,255,0.02);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  padding: 2.25rem 2.5rem;
+  border: none;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  padding: 2.25rem 2.5rem 2.25rem 0;
 }
 
 /* ── Role badge ── */
@@ -352,23 +352,148 @@ img { max-width: 100%; display: block; }
   align-items: center;
   gap: 0.4rem;
   border-radius: 999px;
-  border: 1px solid rgba(91,156,246,0.15);
-  background: rgba(91,156,246,0.06);
-  padding: 0.4rem 1.1rem;
-  font-size: 0.68rem;
-  font-weight: 600;
+  border: 1px solid rgba(91,156,246,0.22);
+  background: rgba(91,156,246,0.08);
+  padding: 0.38rem 1.1rem;
+  font-size: 0.65rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: rgba(91,156,246,0.8);
+  letter-spacing: 0.18em;
+  color: rgba(91,156,246,0.9);
   margin-bottom: 1.5rem;
+  box-shadow: 0 0 16px rgba(91,156,246,0.08);
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.team-role-badge:hover {
+  background: rgba(91,156,246,0.14);
+  box-shadow: 0 0 24px rgba(91,156,246,0.18);
 }
 
 /* ── Accent line ── */
 .team-accent-line {
-  width: 2.5rem;
+  width: 3rem;
   height: 1px;
-  background: linear-gradient(90deg, rgba(91,156,246,0.45), transparent);
+  background: linear-gradient(90deg, rgba(91,156,246,0.6), rgba(91,156,246,0.1), transparent);
   margin-bottom: 1.5rem;
+  animation: accent-expand 0.6s cubic-bezier(0.22,1,0.36,1) both;
+  transform-origin: left center;
+}
+
+@keyframes accent-expand {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 1; }
+}
+
+/* ── Skills tags row ── */
+.team-skills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1.25rem;
+}
+
+.team-skill-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  transition: all 0.25s ease;
+  cursor: default;
+}
+
+.team-skill-tag:hover {
+  color: rgba(91,156,246,0.9);
+  border-color: rgba(91,156,246,0.25);
+  background: rgba(91,156,246,0.06);
+}
+
+/* ── Card divider ── */
+.team-card-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+  margin: 1.25rem 0;
+}
+
+/* ── Action button row ── */
+.team-action-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+/* ── Base button ── */
+.team-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  letter-spacing: 0.04em;
+  padding: 0.52rem 1.1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    transform 180ms cubic-bezier(0.34,1.56,0.64,1),
+    box-shadow 250ms ease,
+    background 220ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+  will-change: transform;
+  white-space: nowrap;
+}
+
+.team-btn:hover  { transform: translateY(-2px); }
+.team-btn:active { transform: translateY(1px) scale(0.97); }
+
+/* Ghost — GitHub */
+.team-btn-ghost {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.6);
+}
+.team-btn-ghost:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.22);
+  color: rgba(255,255,255,0.9);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+/* LinkedIn blue */
+.team-btn-linkedin {
+  background: rgba(10,102,194,0.12);
+  border: 1px solid rgba(10,102,194,0.25);
+  color: rgba(100,168,255,0.85);
+}
+.team-btn-linkedin:hover {
+  background: rgba(10,102,194,0.22);
+  border-color: rgba(10,102,194,0.5);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(10,102,194,0.2);
+}
+
+/* Primary — Portfolio (accent blue) */
+.team-btn-primary {
+  background: rgba(91,156,246,0.12);
+  border: 1px solid rgba(91,156,246,0.28);
+  color: rgba(91,156,246,0.9);
+}
+.team-btn-primary:hover {
+  background: rgba(91,156,246,0.22);
+  border-color: rgba(91,156,246,0.5);
+  color: #fff;
+  box-shadow: 0 4px 24px rgba(91,156,246,0.2);
 }
 
 /* ── Dot navigation ── */

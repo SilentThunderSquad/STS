@@ -41,6 +41,9 @@ export const team = [
     image:
       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
     portfolio: "https://example.com",
+    github: "https://github.com/",
+    linkedin: "https://linkedin.com/",
+    skills: ["Machine Learning", "PyTorch", "Python", "System Design"],
     isLead: true
   },
   {
@@ -49,7 +52,10 @@ export const team = [
     bio: "Crafts pixel-perfect interfaces with obsessive attention to interaction design. Expert in React ecosystems, animation libraries, and design systems that scale.",
     image:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80",
-    portfolio: "https://example.com"
+    portfolio: "https://example.com",
+    github: "https://github.com/",
+    linkedin: "https://linkedin.com/",
+    skills: ["React", "GSAP", "TypeScript", "Design Systems"],
   },
   {
     name: "Rohan Verma",
@@ -57,7 +63,10 @@ export const team = [
     bio: "Builds the invisible engines that power everything. Proficient in distributed systems, API design, and database optimization under real-world constraints.",
     image:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
-    portfolio: "https://example.com"
+    portfolio: "https://example.com",
+    github: "https://github.com/",
+    linkedin: "https://linkedin.com/",
+    skills: ["Node.js", "PostgreSQL", "Redis", "REST APIs"],
   },
   {
     name: "Isha Kulkarni",
@@ -65,7 +74,10 @@ export const team = [
     bio: "Orchestrates infrastructure with precision. From CI/CD pipelines to container orchestration — ensures every deployment is reliable, fast, and reproducible.",
     image:
       "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80",
-    portfolio: "https://example.com"
+    portfolio: "https://example.com",
+    github: "https://github.com/",
+    linkedin: "https://linkedin.com/",
+    skills: ["AWS", "Docker", "Kubernetes", "CI/CD"],
   },
   {
     name: "Kabir Anand",
@@ -73,7 +85,10 @@ export const team = [
     bio: "Bridges the gap between engineering and impact. Defines roadmaps, validates assumptions through user research, and ensures every feature serves a real need.",
     image:
       "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
-    portfolio: "https://example.com"
+    portfolio: "https://example.com",
+    github: "https://github.com/",
+    linkedin: "https://linkedin.com/",
+    skills: ["Product Strategy", "UX Research", "Figma", "Analytics"],
   },
   {
     name: "Naina Rao",
@@ -81,6 +96,9 @@ export const team = [
     bio: "The versatile builder who moves fluidly between frontend polish and backend logic. Ships end-to-end features with clean code and zero handoff friction.",
     image:
       "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80",
-    portfolio: "https://example.com"
+    portfolio: "https://example.com",
+    github: "https://github.com/",
+    linkedin: "https://linkedin.com/",
+    skills: ["Next.js", "Go", "MongoDB", "Tailwind CSS"],
   }
 ];
