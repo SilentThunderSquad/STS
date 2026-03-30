@@ -6,9 +6,26 @@
 
 :root {
   color-scheme: dark;
-  --color-bg: #06070d;
-  --color-accent: #5b9cf6;
-  --color-accent-dim: rgba(91,156,246,0.15);
+
+  /* Background */
+  --color-bg:          #080b18;
+  --color-bg-2:        #090d1f;
+  --color-surface:     rgba(255,255,255,0.025);
+
+  /* Primary accent — electric violet/indigo */
+  --color-accent:      #7c6af7;
+  --color-accent-rgb:  124,106,247;
+  --color-accent-dim:  rgba(124,106,247,0.14);
+  --color-accent-glow: rgba(124,106,247,0.25);
+
+  /* Secondary accent — cyan */
+  --color-cyan:        #22d3ee;
+  --color-cyan-dim:    rgba(34,211,238,0.12);
+
+  /* Border */
+  --color-border:      rgba(255,255,255,0.055);
+
+  /* Easing */
   --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -21,7 +38,7 @@
 
 html {
   scroll-behavior: auto !important;
-  background: var(--color-bg);
+  background: transparent;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -34,14 +51,144 @@ html.lenis, html.lenis body { height: auto; }
 
 body {
   font-family: "Inter", sans-serif;
-  background: var(--color-bg);
-  color: #e8eaf2;
+  background: transparent;
+  color: #dde1f0;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body::-webkit-scrollbar { display: none; }
+
+/* ─────────────────────────────────────────────────
+   GLOBAL PAGE BACKGROUND SYSTEM
+   Fixed behind everything, creates a deep cinematic
+   dark environment across the full page scroll
+   ───────────────────────────────────────────────── */
+
+/* Wrapper: fixed, covers full viewport, z sits below content */
+.page-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* ── 1. Deep space base ── */
+.page-bg__base {
+  position: absolute;
+  inset: 0;
+  background:
+    /* Top-left cool violet tint */
+    radial-gradient(ellipse 100% 70% at -10% -10%,
+      rgba(82, 60, 200, 0.18) 0%,
+      transparent 55%),
+    /* Bottom-right teal breath */
+    radial-gradient(ellipse 80% 60% at 110% 110%,
+      rgba(20, 184, 166, 0.12) 0%,
+      transparent 52%),
+    /* Absolute base — rich near-black navy */
+    #070a17;
+}
+
+/* ── 2. Large violet orb — upper-left anchor */
+.page-bg__orb--violet {
+  position: absolute;
+  width: 900px;
+  height: 900px;
+  top: -200px;
+  left: -250px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 45% 42%,
+    rgba(124, 106, 247, 0.20) 0%,
+    rgba(99,  82,  230, 0.08) 40%,
+    transparent 72%
+  );
+  filter: blur(60px);
+  animation: orb-drift-violet 22s ease-in-out infinite alternate;
+}
+
+@keyframes orb-drift-violet {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(60px, 80px) scale(1.08); }
+}
+
+/* ── 3. Cyan orb — lower-right */
+.page-bg__orb--cyan {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  bottom: -150px;
+  right: -180px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 55% 58%,
+    rgba(34, 211, 238, 0.16) 0%,
+    rgba(6,  182, 212, 0.06) 45%,
+    transparent 70%
+  );
+  filter: blur(55px);
+  animation: orb-drift-cyan 18s ease-in-out infinite alternate;
+}
+
+@keyframes orb-drift-cyan {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-50px, -60px) scale(1.06); }
+}
+
+/* ── 4. Purple mid bloom — scrolls slightly (for depth) */
+.page-bg__orb--purple {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%,
+    rgba(167, 78, 250, 0.09) 0%,
+    rgba(124,106,247, 0.04) 50%,
+    transparent 72%
+  );
+  filter: blur(70px);
+  animation: orb-drift-purple 26s ease-in-out infinite alternate;
+}
+
+@keyframes orb-drift-purple {
+  0%   { transform: translate(-50%, -50%) scale(1); }
+  100% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.7; }
+}
+
+/* ── 5. Film grain noise — pure CSS (no external SVG needed) */
+.page-bg__noise {
+  position: absolute;
+  inset: 0;
+  /* Tiny repeating pattern simulating grain */
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 160px 160px;
+  opacity: 0.028;
+  mix-blend-mode: overlay;
+}
+
+/* ── 6. Subtle dot-grid for structure */
+.page-bg__grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.045) 1px, transparent 1px);
+  background-size: 40px 40px;
+  /* Fade to nothing at edges */
+  -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 40%, transparent 100%);
+}
+
+/* Main content wrapper — sits above the fixed bg */
+.page-main {
+  position: relative;
+  z-index: 0;
+  color: #dde1f0;
+}
 
 img { max-width: 100%; display: block; }
 
@@ -269,19 +416,33 @@ img { max-width: 100%; display: block; }
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: var(--color-bg);
+  /* transparent — global page-bg shows through */
+  background: transparent;
 }
 
+/* Two ambient orbs for depth */
 .team-ambient {
   position: absolute;
-  width: 900px;
-  height: 900px;
-  top: 50%;
-  left: 55%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(91,156,246,0.05) 0%, transparent 60%);
-  filter: blur(70px);
+  top: 0; left: 0; right: 0; bottom: 0;
   pointer-events: none;
+}
+.team-ambient::before {
+  content: '';
+  position: absolute;
+  width: 900px; height: 900px;
+  top: 50%; left: 60%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(124,106,247,0.09) 0%, transparent 65%);
+  filter: blur(80px);
+}
+.team-ambient::after {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  top: 70%; left: 20%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(34,211,238,0.06) 0%, transparent 65%);
+  filter: blur(60px);
 }
 
 /* ── Two-column pinned layout ── */
@@ -316,7 +477,7 @@ img { max-width: 100%; display: block; }
   font-size: 2.8rem;
   font-weight: 800;
   letter-spacing: -0.03em;
-  background: linear-gradient(135deg, rgba(255,255,255,0.85), rgba(91,156,246,0.7));
+  background: linear-gradient(135deg, rgba(255,255,255,0.9) 30%, rgba(124,106,247,0.8) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -352,30 +513,30 @@ img { max-width: 100%; display: block; }
   align-items: center;
   gap: 0.4rem;
   border-radius: 999px;
-  border: 1px solid rgba(91,156,246,0.22);
-  background: rgba(91,156,246,0.08);
+  border: 1px solid rgba(124,106,247,0.28);
+  background: rgba(124,106,247,0.09);
   padding: 0.38rem 1.1rem;
   font-size: 0.65rem;
   font-family: "Inter", sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: rgba(91,156,246,0.9);
+  color: rgba(168,156,255,0.95);
   margin-bottom: 1.5rem;
-  box-shadow: 0 0 16px rgba(91,156,246,0.08);
+  box-shadow: 0 0 18px rgba(124,106,247,0.1);
   transition: box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .team-role-badge:hover {
-  background: rgba(91,156,246,0.14);
-  box-shadow: 0 0 24px rgba(91,156,246,0.18);
+  background: rgba(124,106,247,0.16);
+  box-shadow: 0 0 28px rgba(124,106,247,0.22);
 }
 
 /* ── Accent line ── */
 .team-accent-line {
   width: 3rem;
   height: 1px;
-  background: linear-gradient(90deg, rgba(91,156,246,0.6), rgba(91,156,246,0.1), transparent);
+  background: linear-gradient(90deg, rgba(34,211,238,0.7), rgba(124,106,247,0.4), transparent);
   margin-bottom: 1.5rem;
   animation: accent-expand 0.6s cubic-bezier(0.22,1,0.36,1) both;
   transform-origin: left center;
@@ -411,9 +572,9 @@ img { max-width: 100%; display: block; }
 }
 
 .team-skill-tag:hover {
-  color: rgba(91,156,246,0.9);
-  border-color: rgba(91,156,246,0.25);
-  background: rgba(91,156,246,0.06);
+  color: rgba(168,156,255,0.95);
+  border-color: rgba(124,106,247,0.28);
+  background: rgba(124,106,247,0.07);
 }
 
 /* ── Card divider ── */
@@ -483,17 +644,17 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 4px 20px rgba(10,102,194,0.2);
 }
 
-/* Primary — Portfolio (accent blue) */
+/* Primary — Portfolio (accent violet) */
 .team-btn-primary {
-  background: rgba(91,156,246,0.12);
-  border: 1px solid rgba(91,156,246,0.28);
-  color: rgba(91,156,246,0.9);
+  background: rgba(124,106,247,0.1);
+  border: 1px solid rgba(124,106,247,0.28);
+  color: rgba(168,156,255,0.95);
 }
 .team-btn-primary:hover {
-  background: rgba(91,156,246,0.22);
-  border-color: rgba(91,156,246,0.5);
+  background: rgba(124,106,247,0.2);
+  border-color: rgba(124,106,247,0.5);
   color: #fff;
-  box-shadow: 0 4px 24px rgba(91,156,246,0.2);
+  box-shadow: 0 4px 24px rgba(124,106,247,0.22);
 }
 
 /* ── Dot navigation ── */
@@ -513,9 +674,9 @@ img { max-width: 100%; display: block; }
 }
 
 .team-dot--active {
-  background: rgba(91,156,246,0.6);
-  border-color: rgba(91,156,246,0.5);
-  box-shadow: 0 0 8px rgba(91,156,246,0.3);
+  background: rgba(124,106,247,0.7);
+  border-color: rgba(124,106,247,0.55);
+  box-shadow: 0 0 8px rgba(124,106,247,0.45), 0 0 2px rgba(34,211,238,0.3);
   transform: scale(1.25);
 }
 
@@ -558,25 +719,32 @@ img { max-width: 100%; display: block; }
   transform: translateY(-50%);
   width: 750px;
   height: 1500px;
-  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border: 1px dashed rgba(124,106,247,0.12);
   border-right: none;
   border-top-left-radius: 750px;
   border-bottom-left-radius: 750px;
   pointer-events: none;
-  box-shadow: inset 20px 0 50px rgba(91, 156, 246, 0.03);
+  box-shadow: inset 20px 0 80px rgba(124,106,247,0.04);
 }
 
-/* ── Glowing Solar Core (Optional) ── */
+/* ── Glowing Solar Core ── */
 .team-solar-core {
   position: absolute;
   top: 50%;
-  right: 0; /* Align with right edge now */
-  transform: translate(50%, -50%); /* Half visible */
-  width: 250px;
-  height: 250px;
+  right: 0;
+  transform: translate(50%, -50%);
+  width: 280px;
+  height: 280px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(91, 156, 246, 0.2) 0%, rgba(91, 156, 246, 0.05) 50%, transparent 100%);
-  box-shadow: 0 0 80px rgba(91, 156, 246, 0.2), 0 0 160px rgba(91, 156, 246, 0.05);
+  background: radial-gradient(circle,
+    rgba(124,106,247,0.28) 0%,
+    rgba(34,211,238,0.12) 45%,
+    transparent 72%
+  );
+  box-shadow:
+    0 0 100px rgba(124,106,247,0.22),
+    0 0 60px rgba(34,211,238,0.12),
+    0 0 200px rgba(124,106,247,0.07);
   filter: blur(8px);
   pointer-events: none;
 }

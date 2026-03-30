@@ -190,22 +190,22 @@ export default function Hero() {
       {/* ── AURORA BACKGROUND ── */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
 
-        {/* Orb 1 — blue/cornflower, top-left */}
+        {/* Orb 1 — violet/indigo, top-left */}
         <div
           ref={orb1}
           className="absolute -left-[8%] top-[8%] h-[680px] w-[680px] rounded-full"
           style={{
-            background: "radial-gradient(circle at 40% 40%, rgba(79,140,255,0.24), transparent 68%)",
+            background: "radial-gradient(circle at 40% 40%, rgba(124,106,247,0.22), transparent 68%)",
             filter: "blur(44px)",
           }}
         />
 
-        {/* Orb 2 — indigo, bottom-right */}
+        {/* Orb 2 — deep indigo, bottom-right */}
         <div
           ref={orb2}
           className="absolute -right-[6%] bottom-[2%] h-[720px] w-[720px] rounded-full"
           style={{
-            background: "radial-gradient(circle at 58% 60%, rgba(99,102,241,0.20), transparent 65%)",
+            background: "radial-gradient(circle at 58% 60%, rgba(79,62,216,0.22), transparent 65%)",
             filter: "blur(50px)",
           }}
         />
@@ -215,17 +215,17 @@ export default function Hero() {
           ref={orb3}
           className="absolute right-[20%] top-[28%] h-[380px] w-[380px] rounded-full"
           style={{
-            background: "radial-gradient(circle at 50% 50%, rgba(34,211,238,0.13), transparent 70%)",
+            background: "radial-gradient(circle at 50% 50%, rgba(34,211,238,0.14), transparent 70%)",
             filter: "blur(38px)",
           }}
         />
 
-        {/* Orb 4 — violet, top-right */}
+        {/* Orb 4 — rose-violet, top-right */}
         <div
           ref={orb4}
           className="absolute right-[-4%] top-[6%] h-[520px] w-[520px] rounded-full"
           style={{
-            background: "radial-gradient(circle at 40% 30%, rgba(139,92,246,0.15), transparent 65%)",
+            background: "radial-gradient(circle at 40% 30%, rgba(167,78,250,0.13), transparent 65%)",
             filter: "blur(48px)",
           }}
         />
@@ -245,7 +245,7 @@ export default function Hero() {
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 85% 85% at 50% 50%, transparent 45%, #06070d 100%)",
+              "radial-gradient(ellipse 85% 85% at 50% 50%, transparent 45%, #080b18 100%)",
           }}
         />
       </div>

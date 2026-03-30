@@ -122,28 +122,45 @@ export default function App() {
   return (
     <>
       <ScrollPlane />
-    <main className="bg-[#06070d] text-[#e8eaf2]">
-      <Hero />
-      <About />
-      <WhatWeDo />
-      <Projects />
-      <Team />
 
-      {/* Footer Tagline */}
-      <footer className="relative px-6 py-10 md:py-24">
-        <div className="mx-auto max-w-7xl flex items-center justify-center">
-          <div className="reveal reveal-up text-center">
-            <p className="font-display text-2xl md:text-3xl font-bold tracking-tight text-white/85">
-              Made for and by{" "}
-              <span className="bg-gradient-to-r from-blue-400 via-blue-300 to-purple-400 bg-clip-text text-transparent">
-                Silent Thunder Squad
-              </span>
-            </p>
-            <div className="mt-4 w-24 h-px mx-auto bg-gradient-to-r from-transparent via-blue-400/50 to-transparent"></div>
+      {/* ── GLOBAL PAGE BACKGROUND ── */}
+      <div className="page-bg" aria-hidden>
+        {/* Base deep field */}
+        <div className="page-bg__base" />
+        {/* Large violet orb — upper left */}
+        <div className="page-bg__orb page-bg__orb--violet" />
+        {/* Cyan orb — lower right */}
+        <div className="page-bg__orb page-bg__orb--cyan" />
+        {/* Mid purple bloom — center */}
+        <div className="page-bg__orb page-bg__orb--purple" />
+        {/* Noise grain overlay */}
+        <div className="page-bg__noise" />
+        {/* Horizontal rule lines (subtle grid) */}
+        <div className="page-bg__grid" />
+      </div>
+
+      <main className="page-main">
+        <Hero />
+        <About />
+        <WhatWeDo />
+        <Projects />
+        <Team />
+
+        {/* Footer Tagline */}
+        <footer className="relative px-6 py-10 md:py-24">
+          <div className="mx-auto max-w-7xl flex items-center justify-center">
+            <div className="reveal reveal-up text-center">
+              <p className="font-display text-2xl md:text-3xl font-bold tracking-tight text-white/85">
+                Made for and by{" "}
+                <span className="bg-gradient-to-r from-violet-400 via-indigo-300 to-cyan-400 bg-clip-text text-transparent">
+                  Silent Thunder Squad
+                </span>
+              </p>
+              <div className="mt-4 w-24 h-px mx-auto bg-gradient-to-r from-transparent via-violet-400/50 to-transparent"></div>
+            </div>
           </div>
-        </div>
-      </footer>
-    </main>
+        </footer>
+      </main>
     </>
   );
 }

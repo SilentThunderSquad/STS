@@ -79,11 +79,11 @@ export default function Team() {
         rotationZ: rotZ,
         filter: `blur(${b.toFixed(1)}px)`,
         boxShadow: hero
-          ? "0 0 50px rgba(91,156,246,0.22),0 0 100px rgba(91,156,246,0.08),0 14px 44px rgba(0,0,0,0.5)"
-          : `0 0 ${(10*depth)|0}px rgba(91,156,246,${(0.05*depth).toFixed(2)}),0 ${(4*depth)|0}px ${(14*depth)|0}px rgba(0,0,0,0.3)`,
+          ? "0 0 50px rgba(124,106,247,0.28),0 0 20px rgba(34,211,238,0.12),0 14px 44px rgba(0,0,0,0.55)"
+          : `0 0 ${(10*depth)|0}px rgba(124,106,247,${(0.06*depth).toFixed(2)}),0 ${(4*depth)|0}px ${(14*depth)|0}px rgba(0,0,0,0.3)`,
         borderColor: hero
-          ? "rgba(255,255,255,0.25)"
-          : `rgba(255,255,255,${(0.02+0.04*depth).toFixed(2)})`,
+          ? "rgba(168,156,255,0.3)"
+          : `rgba(255,255,255,${(0.02+0.03*depth).toFixed(2)})`,
       });
 
       if (Math.abs(a) < bestD) { bestD = Math.abs(a); bestI = i; }

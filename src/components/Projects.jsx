@@ -112,7 +112,7 @@ export default function Projects() {
       {/* ── Desktop pinned horizontal ── */}
       <div
         ref={stageRef}
-        className="relative hidden min-h-screen bg-[#06070d] md:flex md:flex-col"
+        className="relative hidden min-h-screen md:flex md:flex-col"
       >
         {/* Section header */}
         <div className="flex items-end justify-between px-20 pt-20 pb-12">
