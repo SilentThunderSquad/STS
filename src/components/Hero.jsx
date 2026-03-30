@@ -258,11 +258,11 @@ export default function Hero() {
           Engineering Collective · Est. 2024
         </p>
 
-        {/* Headline — single line, giant */}
+        {/* Headline — dynamic resizing for tablet perfection */}
         <h1
           ref={headlineRef}
-          className="font-display font-bold leading-[1.0] tracking-tight text-white whitespace-nowrap"
-          style={{ fontSize: "clamp(2.8rem, 9.5vw, 10rem)" }}
+          className="font-display font-bold leading-[1.0] tracking-tight text-white sm:whitespace-nowrap"
+          style={{ fontSize: "clamp(2.5rem, 8.5vw, 10rem)" }}
         >
           Silent Thunder Squad
         </h1>

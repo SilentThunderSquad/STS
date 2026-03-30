@@ -89,7 +89,7 @@ export default function About() {
             Who We Are
           </h2>
 
-          <div ref={lineRef} className="mt-8 mb-8 h-px w-16 bg-blue-400/60" />
+          <div ref={lineRef} className="mt-8 mb-8 h-px w-16 bg-violet-400/60" />
 
           <div ref={bodyRef} className="space-y-6 text-base leading-[1.85] text-white/65 md:text-[17px] font-light tracking-wide">
             <p className="transition-all duration-500 hover:text-white/80 [text-shadow:0_1px_3px_rgba(0,0,0,0.2)]">
@@ -114,27 +114,30 @@ export default function About() {
           </div>
         </div>
 
-        {/* Right visual column */}
+        {/* Right visual column — handles both desktop/mobile flow */}
         <div
           ref={imageColRef}
-          className="relative hidden md:flex flex-col gap-4"
+          className="relative flex flex-col gap-6 md:gap-4"
         >
+          {/* Mission block */}
           <div className="flex-1 rounded-2xl border border-white/5 backdrop-blur-sm bg-gradient-to-br from-white/[0.01] to-transparent hover:border-white/10 transition-all duration-500 overflow-hidden group">
-            <div className="flex h-full flex-col justify-between p-8">
-              <p className="section-label">Mission Statement</p>
-              <blockquote className="font-display text-2xl font-semibold leading-[1.4] text-white/80 tracking-wide group-hover:text-white/90 transition-colors duration-500 [text-shadow:0_2px_4px_rgba(0,0,0,0.3)]">
+            <div className="flex h-full flex-col justify-between p-6 md:p-8">
+              <p className="section-label mb-4 md:mb-0">Mission Statement</p>
+              <blockquote className="font-display text-xl md:text-2xl font-semibold leading-[1.4] text-white/80 tracking-wide group-hover:text-white/90 transition-colors duration-500 [text-shadow:0_2px_4px_rgba(0,0,0,0.3)]">
                 "Build systems that matter — practical, principled, and built to last."
               </blockquote>
-              <div className="divider" />
+              <div className="divider mt-6 animate-pulse md:block" />
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-4">
+
+          {/* Tags grid */}
+          <div className="grid grid-cols-2 gap-3 md:gap-4">
             {["AI Systems", "Full Stack", "Cloud & DevOps", "Product Design"].map((tag, i) => (
               <div
                 key={tag}
-                className={`reveal reveal-scale reveal-delay-${i + 3} rounded-xl border border-white/5 backdrop-blur-sm bg-gradient-to-br from-white/[0.01] to-transparent hover:border-white/10 hover:bg-gradient-to-br hover:from-blue-500/5 hover:to-purple-500/5 transition-all duration-500 p-5 group`}
+                className={`reveal reveal-scale reveal-delay-${i + 3} rounded-xl border border-white/5 backdrop-blur-sm bg-gradient-to-br from-white/[0.01] to-transparent hover:border-white/10 hover:bg-gradient-to-br hover:from-blue-500/5 hover:to-purple-500/5 transition-all duration-500 p-4 md:p-5 group`}
               >
-                <p className="text-sm font-medium text-white/60 group-hover:text-white/80 transition-colors duration-300">{tag}</p>
+                <p className="text-xs md:text-sm font-medium text-white/60 group-hover:text-white/80 transition-colors duration-300">{tag}</p>
               </div>
             ))}
           </div>

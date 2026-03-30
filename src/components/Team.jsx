@@ -34,11 +34,12 @@ export default function Team() {
     const rot = progress * (N - 1) * SEG;
     let bestI = 0, bestD = Infinity;
 
-    // Responsive radius
+    // Responsive radius — synced with CSS .team-half-circle widths
     let currentR = 750;
     let isMobile = false;
     if (typeof window !== "undefined") {
-      if (window.innerWidth <= 850) { currentR = 450; isMobile = true; }
+      if (window.innerWidth <= 480) { currentR = 420; isMobile = true; }
+      else if (window.innerWidth <= 900) { currentR = 500; isMobile = true; }
       else if (window.innerWidth <= 1100) currentR = 550;
       else if (window.innerWidth <= 1400) currentR = 650;
     }

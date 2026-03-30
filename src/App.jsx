@@ -7,6 +7,7 @@ import About from "@/components/About";
 import WhatWeDo from "@/components/WhatWeDo";
 import Projects from "@/components/Projects";
 import Team from "@/components/Team";
+import ScrollToTop from "@/components/ScrollToTop";
 import useScrollReveal from "@/lib/useScrollReveal";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -158,6 +159,7 @@ export default function App() {
           </div>
         </footer>
       </main>
+      <ScrollToTop />
     </>
   );
 }

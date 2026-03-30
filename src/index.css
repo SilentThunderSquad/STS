@@ -30,7 +30,28 @@
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-*, *::before, *::after {
+/* ──────────────────────────────────────────────────
+   TABLET PRECISION OVERRIDES (768px - 1024px)
+   ────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  #about .grid { gap: 4.5rem; }
+  #about, #services { padding-top: 6.5rem; padding-bottom: 6.5rem; }
+}
+
+/* ── Exact 768px tablet: tighten grid gaps and section padding ── */
+@media (max-width: 900px) {
+  #about .grid { gap: 3rem; }
+  #about, #services { padding-top: 4rem; padding-bottom: 4rem; }
+  #about .px-20, #services .px-20 { padding-left: 2rem; padding-right: 2rem; }
+}
+
+@media (max-width: 768px) {
+  #about .grid { gap: 2.5rem; }
+  #about, #services { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+  #services .grid { gap: 2.2rem; }
+}
+
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -56,6 +77,9 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Fixed width padding on very small screens */
+  padding: 0;
+  margin: 0;
 }
 
 body::-webkit-scrollbar { display: none; }
@@ -797,41 +821,190 @@ img { max-width: 100%; display: block; }
 @media (max-width: 1100px) {
   .team-pin-layout {
     gap: 1.5rem;
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.5rem 2rem 4%;
   }
-  .team-pin-info { flex: 0 1 360px; z-index: 20; }
-  .team-solar-stage { right: -150px; }
-  .team-half-circle { width: 550px; height: 1100px; border-top-left-radius: 550px; border-bottom-left-radius: 550px; }
-  .team-info-card { padding: 1.75rem 1.5rem; }
+  .team-pin-info { flex: 0 1 420px; z-index: 20; }
+  .team-solar-stage { right: -120px; }
+  .team-half-circle { 
+    width: 600px; height: 1200px; 
+    border-top-left-radius: 600px; border-bottom-left-radius: 600px; 
+  }
+  .team-info-card { padding: 1.75rem 1rem 1.75rem 0; }
 }
 
-@media (max-width: 850px) {
+/* Mid-range tablet: side-by-side but ultra-compact */
+@media (max-width: 950px) {
+  .team-pin-layout { padding-left: 2.5rem; }
+  .team-pin-info { flex: 0 1 380px; }
+  .team-solar-stage { right: -180px; }
+}
+
+/* ── Tablet (portrait): side-by-side gets too tight, switch to column ── */
+@media (max-width: 900px) {
   .team-pin-layout {
     flex-direction: column;
-    gap: 1.5rem;
-    padding: 1.5rem 1rem;
-    align-items: flex-start;
+    gap: 0;
+    padding: 5vh 1.5rem 0;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
   }
   .team-pin-info {
     flex: none;
     width: 100%;
-    max-width: 420px;
+    max-width: 500px;
+    margin-bottom: 0;
   }
+  .team-info-card { padding: 0.5rem 0; }
+  .team-accent-line { margin: 0.75rem auto; }
+  .team-counter { justify-content: center; }
+  .team-dots { justify-content: center; margin-top: 0.5rem; }
+  .team-action-row { justify-content: center; }
+  .team-skills-row { justify-content: center; }
+  
+  /* Orbit arc: positioned below the info panel, centered horizontally */
   .team-solar-stage {
-    right: 50%;
-    top: auto;
-    bottom: 15%;
-    transform: rotate(-90deg); /* Rotate standard circle so half-circle faces down instead of left */
+    position: absolute;
+    right: 50%;          /* center anchor: 0-width element at 50% left */
+    top: 62%;             /* push into lower 38% of the 815px height */
+    transform: translate(0, 0);
   }
-  .team-half-circle { 
-    width: 450px; height: 900px; 
-    border-top-left-radius: 450px; border-bottom-left-radius: 450px;
-    border-right: none;
+
+  /* Half-circle rotated so arc opens upward, centered */
+  .team-half-circle {
+    width: 500px;
+    height: 1000px;
+    border-top-left-radius: 500px;
+    border-bottom-left-radius: 500px;
+    right: -250px;      /* offset so arc centre lands at stage origin */
+    transform: translateY(-50%) rotate(-90deg);
+    border-color: rgba(124,106,247,0.10);
   }
+
+  .team-solar-core {
+    transform: translate(50%, -50%) scale(0.65);
+  }
+}
+
+/* ── Premium Scroll To Top Button ── */
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  z-index: 9999;
+  width: 3.2rem;
+  height: 3.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 50%;
+  pointer-events: auto;
+  will-change: transform, opacity;
+}
+
+/* Glass background content overlay */
+.scroll-to-top-btn .btn-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 11, 24, 0.45);
+  backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 0 12px rgba(255, 255, 255, 0.03);
+  z-index: 2;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Subtle accent glow orb behind button */
+.scroll-to-top-btn .btn-glow {
+  position: absolute;
+  inset: -12px;
+  background: radial-gradient(circle, rgba(124, 106, 247, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(4px);
+  z-index: 1;
+  opacity: 0.6;
+  transition: transform 0.6s ease, opacity 0.4s ease;
+  animation: btn-glow-pulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes btn-glow-pulse {
+  from { transform: scale(1); opacity: 0.5; }
+  to   { transform: scale(1.15); opacity: 0.8; }
+}
+
+.scroll-to-top-btn .btn-icon {
+  color: rgba(255, 255, 255, 0.7);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
+}
+
+/* Hover interactions */
+.scroll-to-top-btn:hover .btn-inner {
+  background: rgba(124, 106, 247, 0.18);
+  border-color: rgba(124, 106, 247, 0.45);
+  transform: translateY(-4px);
+  box-shadow: 
+    0 12px 40px rgba(124, 106, 247, 0.25),
+    inset 0 0 15px rgba(124, 106, 247, 0.1);
+}
+
+.scroll-to-top-btn:hover .btn-glow {
+  transform: scale(1.4);
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.25) 0%, transparent 70%);
+  opacity: 1;
+}
+
+.scroll-to-top-btn:hover .btn-icon {
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+/* Pressed state */
+.scroll-to-top-btn:active .btn-inner {
+  transform: translateY(1px) scale(0.94);
+  transition-duration: 0.1s;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  /* Team name heading: cap size so long names fit on one line */
+  .team-info-card h3 { font-size: 2.2rem !important; }
   .team-counter-num { font-size: 2rem; }
-  .team-info-card { padding: 1.25rem 1rem; }
-  /* Counter-rotate photos so they stay upright on mobile */
-  .team-photo-wrap {
-    transform-origin: center;
+  /* Tighten the bio text for the tight 815px height */
+  .team-info-card p[style] { font-size: 15px !important; line-height: 1.7 !important; }
+  .team-solar-core { transform: translate(50%, -50%) scale(0.65); }
+
+  .scroll-to-top-btn {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-pin-layout { padding-top: 4rem; }
+  .team-counter-num { font-size: 1.8rem; }
+  .team-role-badge { padding: 0.3rem 0.8rem; font-size: 0.55rem; }
+  .team-skill-tag { font-size: 0.58rem; padding: 0.2rem 0.5rem; }
+  .team-btn { padding: 0.45rem 0.8rem; font-size: 0.65rem; }
+  .team-half-circle { width: 420px; height: 840px; right: -210px; }
+  .team-solar-stage { top: 64%; }
+  .team-info-card h3 { font-size: 1.9rem !important; }
+
+  .scroll-to-top-btn {
+    bottom: 1.25rem;
+    right: 1.25rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 }

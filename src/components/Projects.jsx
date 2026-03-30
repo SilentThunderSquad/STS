@@ -115,19 +115,19 @@ export default function Projects() {
         className="relative hidden min-h-screen md:flex md:flex-col"
       >
         {/* Section header */}
-        <div className="flex items-end justify-between px-20 pt-20 pb-12">
+        <div className="flex items-end justify-between px-8 pt-12 pb-8 md:px-14 md:pt-16 md:pb-10 lg:px-20 lg:pt-20 lg:pb-12">
           <div>
             <p ref={labelRef} className="section-label mb-4">
               Work
             </p>
             <h2
               ref={headingRef}
-              className="font-display text-[clamp(2.4rem,5vw,4rem)] font-bold tracking-tight text-white"
+              className="font-display text-[clamp(2rem,4vw,4rem)] font-bold tracking-tight text-white"
             >
               Project Showcase
             </h2>
           </div>
-          <p className="reveal reveal-left reveal-delay-3 max-w-xs text-right text-sm text-white/35 leading-relaxed">
+          <p className="reveal reveal-left reveal-delay-3 max-w-xs text-right text-sm text-white/35 leading-relaxed hidden lg:block">
             Drag to explore — each project engineered for real-world impact.
           </p>
         </div>
@@ -135,7 +135,7 @@ export default function Projects() {
         {/* Carousel track */}
         <div
           ref={trackRef}
-          className="flex flex-1 items-end gap-6 px-20 pb-20 will-change-transform"
+          className="flex flex-1 items-end gap-6 px-8 pb-14 md:px-14 md:pb-16 lg:px-20 lg:pb-20 will-change-transform"
           style={{ width: "max-content" }}
         >
           {projects.map((project, i) => (

@@ -111,11 +111,11 @@ export default function WhatWeDo() {
             >
               <p className="section-label pt-1">{s.num}</p>
 
-              <h3 className="font-display text-xl font-semibold text-white group-hover:text-blue-300 transition-colors duration-300">
+              <h3 className="font-display text-xl md:text-2xl font-semibold text-white group-hover:text-violet-300 transition-colors duration-300">
                 {s.title}
                 <div
                   data-line
-                  className="mt-3 h-px w-12 bg-blue-400/50"
+                  className="mt-3 h-px w-12 bg-violet-400/50"
                 />
               </h3>
 
