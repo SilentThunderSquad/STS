@@ -129,24 +129,18 @@ export default function App() {
       <Projects />
       <Team />
 
-      {/* Footer with scroll reveal */}
-      <footer className="relative border-t border-white/5 px-6 py-12 md:px-20">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 flex-wrap">
-          <p className="reveal reveal-up reveal-delay-1 font-display text-sm font-semibold tracking-wide text-white/60">
-            Silent Thunder Squad
-          </p>
-          <nav className="flex gap-6 text-xs text-white/30">
-            {["About", "Work", "Services", "Team"].map((link, i) => (
-              <a
-                key={link}
-                href={`#${link.toLowerCase()}`}
-                className={`reveal reveal-up reveal-delay-${i + 2} hover:text-white/60 transition-colors duration-200`}
-              >
-                {link}
-              </a>
-            ))}
-          </nav>
-          <p className="reveal reveal-up reveal-delay-6 text-xs text-white/20">© 2026 — All rights reserved</p>
+      {/* Footer Tagline */}
+      <footer className="relative px-6 py-10 md:py-24">
+        <div className="mx-auto max-w-7xl flex items-center justify-center">
+          <div className="reveal reveal-up text-center">
+            <p className="font-display text-2xl md:text-3xl font-bold tracking-tight text-white/85">
+              Made for and by{" "}
+              <span className="bg-gradient-to-r from-blue-400 via-blue-300 to-purple-400 bg-clip-text text-transparent">
+                Silent Thunder Squad
+              </span>
+            </p>
+            <div className="mt-4 w-24 h-px mx-auto bg-gradient-to-r from-transparent via-blue-400/50 to-transparent"></div>
+          </div>
         </div>
       </footer>
     </main>
