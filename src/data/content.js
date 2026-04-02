@@ -73,7 +73,7 @@ export const team = [
     role: "Frontend Developer",
     bio: "Crafts elegant, high-performance web experiences with a focus on interaction design and pixel perfection. Expert in modern React ecosystems and responsive interface architecture.",
     image: "/images/anuj.jpg",
-    objectPosition: "center 15%",
+    objectPosition: "center 10%",
     portfolio: "https://example.com",
     github: "https://github.com/anujvashishth",
     linkedin: "https://www.linkedin.com/in/anuj-vashishtha-b16667296/",
