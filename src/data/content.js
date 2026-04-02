@@ -80,15 +80,15 @@ export const team = [
     skills: ["React", "Next.js", "JavaScript", "Tailwind CSS"],
   },
   {
-    name: "Kabir Anand",
-    role: "Product Strategist",
-    bio: "Bridges the gap between engineering and impact. Defines roadmaps, validates assumptions through user research, and ensures every feature serves a real need.",
-    image:
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+    name: "Priyanshu Varshney",
+    role: "Backend Developer",
+    bio: "Specializes in building robust, high-performance server-side architectures and scalable backend services. Expert in distributed systems and data-driven infrastructure.",
+    image: "/images/priyanshu.jpg",
+    objectPosition: "center 12%",
     portfolio: "https://example.com",
     github: "https://github.com/",
     linkedin: "https://linkedin.com/",
-    skills: ["Product Strategy", "UX Research", "Figma", "Analytics"],
+    skills: ["Node.js", "Python", "SQL", "System Design"],
   },
   {
     name: "Naina Rao",
