@@ -69,15 +69,15 @@ export const team = [
     skills: ["React", "JavaScript", "Tailwind CSS", "UI/UX"],
   },
   {
-    name: "Isha Kulkarni",
-    role: "Cloud & DevOps Engineer",
-    bio: "Orchestrates infrastructure with precision. From CI/CD pipelines to container orchestration — ensures every deployment is reliable, fast, and reproducible.",
-    image:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80",
+    name: "Anuj Vashishth",
+    role: "Frontend Developer",
+    bio: "Crafts elegant, high-performance web experiences with a focus on interaction design and pixel perfection. Expert in modern React ecosystems and responsive interface architecture.",
+    image: "/images/anuj.jpg",
+    objectPosition: "center 15%",
     portfolio: "https://example.com",
-    github: "https://github.com/",
-    linkedin: "https://linkedin.com/",
-    skills: ["AWS", "Docker", "Kubernetes", "CI/CD"],
+    github: "https://github.com/anujvashishth",
+    linkedin: "https://www.linkedin.com/in/anuj-vashishtha-b16667296/",
+    skills: ["React", "Next.js", "JavaScript", "Tailwind CSS"],
   },
   {
     name: "Kabir Anand",
