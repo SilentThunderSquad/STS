@@ -366,7 +366,9 @@ export default function Team() {
               style={{ width: PHOTO, height: PHOTO, left: "0", top: "0" }}
             >
               <img src={t.image} alt={t.name}
-                className="h-full w-full object-cover" draggable={false} />
+                className="h-full w-full object-cover" 
+                style={{ objectPosition: t.objectPosition || 'center 20%' }}
+                draggable={false} />
               <div 
                 className="team-photo-label"
                 style={{ opacity: activeIdx === i ? 1 : 0 }}
